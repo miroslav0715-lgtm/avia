@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWings | Авиабилеты по всему миру</title>
+    <!-- Подключаем CSS анимации и стили -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome для иконок (необязательно, но улучшает вид) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта с навигацией -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-plane"></i> SkyWings
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#destinations">Направления</a></li>
+                <li><a href="#booking">Билеты</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero секция с формой быстрого поиска (анимация появления) -->
+    <section id="hero" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Откройте для себя мир с SkyWings</h1>
+            <p>Лучшие цены на авиабилеты в любую точку планеты</p>
+            <!-- Быстрая форма, но основная будет ниже, эта для красоты -->
+            <div class="quick-search">
+                <input type="text" placeholder="Откуда" value="Москва">
+                <input type="text" placeholder="Куда" value="Париж">
+                <button class="btn pulse"><i class="fas fa-search"></i> Найти</button>
+            </div>
+        </div>
+        <!-- Анимированный самолётик -->
+        <div class="plane-animation">
+            <i class="fas fa-paper-plane"></i>
+        </div>
+    </section>
+
+    <!-- Секция популярных направлений (карточки с анимацией при наведении) -->
+    <section id="destinations" class="destinations">
+        <h2 class="section-title slide-up">Популярные направления</h2>
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&auto=format" alt="Париж">
+                <div class="card-content">
+                    <h3>Париж <span class="country">Франция</span></h3>
+                    <p>от 15 000 ₽</p>
+                    <a href="#booking" class="card-btn">Выбрать</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1522083165195-3424ed129620?w=400&auto=format" alt="Нью-Йорк">
+                <div class="card-content">
+                    <h3>Нью-Йорк <span class="country">США</span></h3>
+                    <p>от 25 000 ₽</p>
+                    <a href="#booking" class="card-btn">Выбрать</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&auto=format" alt="Токио">
+                <div class="card-content">
+                    <h3>Токио <span class="country">Япония</span></h3>
+                    <p>от 35 000 ₽</p>
+                    <a href="#booking" class="card-btn">Выбрать</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1579033461380-adb47c3eb938?w=400&auto=format" alt="Сидней">
+                <div class="card-content">
+                    <h3>Сидней <span class="country">Австралия</span></h3>
+                    <p>от 45 000 ₽</p>
+                    <a href="#booking" class="card-btn">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основная секция бронирования (форма отправляется через AJAX в process.php) -->
+    <section id="booking" class="booking">
+        <h2 class="section-title slide-up">Купить авиабилет</h2>
+        <div class="form-container fade-in">
+            <form id="flightForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-plane-departure"></i> Откуда</label>
+                        <input type="text" id="from" name="from" placeholder="Город вылета" value="Москва" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-plane-arrival"></i> Куда</label>
+                        <input type="text" id="to" name="to" placeholder="Город назначения" value="Париж" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-alt"></i> Туда</label>
+                        <input type="date" id="depart" name="depart" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> Обратно</label>
+                        <input type="date" id="return" name="return">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Пассажиры</label>
+                        <input type="number" id="passengers" name="passengers" min="1" max="9" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Класс</label>
+                        <select id="class" name="class">
+                            <option value="economy">Эконом</option>
+                            <option value="business">Бизнес</option>
+                            <option value="first">Первый</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit pulse"><i class="fas fa-ticket-alt"></i> Забронировать</button>
+            </form>
+            <!-- Здесь будет отображаться ответ от PHP -->
+            <div id="responseMessage" class="response-message"></div>
+        </div>
+    </section>
+
+    <!-- Контактная информация (футер) -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SkyWings</h3>
+                <p>Ваши крылья в небе. Лучшие предложения по всему миру.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@skywings.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Мы в соцсетях</h3>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 SkyWings. Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Подключаем JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
